@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     githubLink: 'https://github.com/kankaniakshat185/Relay',
     liveLink: 'https://therelay.vercel.app',
     id: 'project8',
-    categories: ['Full Stack', 'Data Engineering'],
+    categories: ['Full Stack'],
   },
   {
     name: 'Strata',
