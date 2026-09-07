@@ -217,7 +217,8 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     L3 -.spanning → stitched.-> Q`,
 
   project8: `flowchart TB
-    Browser["Browser<br/>Next.js frontend (Vercel)"]
+    Browser["Browser"]
+    Frontend["Next.js frontend (Vercel)<br/>/api/* → BFF proxy (ADR 0024)"]
 
     subgraph API["FastAPI backend (Render)"]
         direction TB
@@ -232,6 +233,8 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
             FT["flaky_tests"]
             Notes["notes"]
             WD["weekly_digest"]
+            IC["incident_correlation"]
+            DD["decision_debt"]
         end
 
         subgraph Engine["engine/ — shared retrieval & correlation core"]
@@ -242,6 +245,7 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
             Ranking["ranking<br/>differential-tested"]
             CodeContext["code_context<br/>live git blame"]
             CodeSearch["code_search"]
+            Timeline["timeline<br/>correlated commit history"]
             Synthesis["synthesis<br/>BYOK / free-tier LLM"]
         end
     end
@@ -249,13 +253,14 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     Worker["Celery worker<br/>15-min periodic resync + indexing"]
 
     DB[("Neon Postgres<br/>+ pgvector")]
-    Cache[("Redis<br/>broker + rate limits")]
+    Cache[("Redis<br/>broker")]
 
     Providers["GitHub · Slack · Jira APIs"]
     LLMs["OpenAI · Anthropic · Groq · Gemini"]
 
-    Browser -->|session cookie| Auth
-    Browser -->|session cookie| Features
+    Browser -->|same-site cookie| Frontend
+    Frontend -->|proxied, server-side| Auth
+    Frontend -->|proxied, server-side| Features
     Features --> Engine
     Connectors --> Providers
     Auth --> DB

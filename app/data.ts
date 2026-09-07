@@ -46,8 +46,8 @@ export const PROJECTS: Project[] = [
   {
     name: 'Relay - Shared Context Engine for GitHub/Slack/Jira',
     description: [
-      'Architected a shared context engine correlating GitHub, Slack, and Jira into six query modes (context search, git-blame archaeology, PR blast radius, flaky-test detection, weekly digests) — one retrieval/ranking core reused by every feature, never duplicated.',
-      'Built hybrid keyword + vector search on PostgreSQL/pgvector with pluggable LLM synthesis (OpenAI, Anthropic, Groq, Gemini, BYOK or free tier), validated by 307 tests at 94.7% coverage across unit, integration, and differential-ranking suites.',
+      'Architected a shared context engine correlating GitHub, Slack, and Jira into eight query modes (context search, git-blame archaeology, PR blast radius, flaky-test detection, weekly digests, incident correlation, deciion debt) — one retrieval/ranking core reused by every feature, never duplicated.',
+      'Built hybrid keyword + vector search on PostgreSQL/pgvector with pluggable LLM synthesis (OpenAI, Anthropic, Groq, Gemini, BYOK or free tier), validated by 300+ tests at 95% coverage across unit, integration, and differential-ranking suites.',
       "Traced live git blame via GitHub's GraphQL API to correlate any file, PR, or contributor against the Jira tickets and Slack threads discussing it — three different entry points funneling into one pooling/dedup/ranking pipeline, not three copies of it.",
       'Deployed a three-platform production stack (Render, Vercel, Neon) with automated Alembic migrations and backgrounded Celery workers, securing six separate OAuth apps across four providers by deliberately isolating login credentials from data-access credentials.'
     ],
